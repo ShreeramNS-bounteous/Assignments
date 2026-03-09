@@ -1,0 +1,4 @@
+ExecutorService manages threads efficiently
+Spring Boot simplifies backend development
+Java is powerful
+ExecutorService manages threads efficiently

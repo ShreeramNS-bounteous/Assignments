@@ -1,0 +1,5 @@
+Spring Boot simplifies backend development
+Streams make data processing easier
+Streams make data processing easier
+ExecutorService manages threads efficiently
+Security is important in applications

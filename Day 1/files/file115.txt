@@ -1,0 +1,5 @@
+Concurrency allows tasks to run in parallel
+Streams make data processing easier
+Security is important in applications
+ExecutorService manages threads efficiently
+Multithreading improves performance

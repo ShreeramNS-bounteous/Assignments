@@ -1,0 +1,4 @@
+Multithreading improves performance
+Java is powerful
+Java is powerful
+Spring Boot simplifies backend development

@@ -1,0 +1,3 @@
+Collections help manage groups of objects
+Spring Boot simplifies backend development
+Streams make data processing easier

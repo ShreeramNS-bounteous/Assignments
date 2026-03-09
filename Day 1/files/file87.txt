@@ -1,0 +1,3 @@
+Java is powerful
+Security is important in applications
+Multithreading improves performance

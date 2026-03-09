@@ -1,0 +1,3 @@
+ExecutorService manages threads efficiently
+Java is powerful
+Multithreading improves performance

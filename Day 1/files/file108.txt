@@ -1,0 +1,5 @@
+Collections help manage groups of objects
+ExecutorService manages threads efficiently
+Streams make data processing easier
+Collections help manage groups of objects
+Multithreading improves performance

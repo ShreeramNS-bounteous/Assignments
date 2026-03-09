@@ -1,0 +1,5 @@
+Security is important in applications
+Java is powerful
+Security is important in applications
+Spring Boot simplifies backend development
+ExecutorService manages threads efficiently

@@ -1,0 +1,5 @@
+Collections help manage groups of objects
+Java is powerful
+Collections help manage groups of objects
+Java is powerful
+Spring Boot simplifies backend development

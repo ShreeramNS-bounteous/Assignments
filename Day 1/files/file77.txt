@@ -1,0 +1,4 @@
+Spring Boot simplifies backend development
+Security is important in applications
+Java is powerful
+Concurrency allows tasks to run in parallel

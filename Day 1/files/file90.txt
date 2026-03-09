@@ -1,0 +1,4 @@
+Collections help manage groups of objects
+Security is important in applications
+ExecutorService manages threads efficiently
+Multithreading improves performance

@@ -1,0 +1,5 @@
+Spring Boot simplifies backend development
+Multithreading improves performance
+Collections help manage groups of objects
+Concurrency allows tasks to run in parallel
+Security is important in applications

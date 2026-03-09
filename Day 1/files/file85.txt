@@ -1,0 +1,4 @@
+Security is important in applications
+Spring Boot simplifies backend development
+Streams make data processing easier
+Java is powerful

@@ -1,0 +1,5 @@
+Multithreading improves performance
+Security is important in applications
+ExecutorService manages threads efficiently
+Concurrency allows tasks to run in parallel
+Java is powerful

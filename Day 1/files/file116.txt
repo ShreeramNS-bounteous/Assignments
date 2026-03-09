@@ -1,0 +1,3 @@
+Multithreading improves performance
+Streams make data processing easier
+ExecutorService manages threads efficiently

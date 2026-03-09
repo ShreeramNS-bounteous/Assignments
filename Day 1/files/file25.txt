@@ -1,0 +1,5 @@
+Multithreading improves performance
+Collections help manage groups of objects
+ExecutorService manages threads efficiently
+ExecutorService manages threads efficiently
+Spring Boot simplifies backend development

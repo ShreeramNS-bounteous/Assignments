@@ -1,0 +1,3 @@
+Streams make data processing easier
+Java is powerful
+Concurrency allows tasks to run in parallel

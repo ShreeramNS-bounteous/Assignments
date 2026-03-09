@@ -1,0 +1,4 @@
+Security is important in applications
+Security is important in applications
+Spring Boot simplifies backend development
+Concurrency allows tasks to run in parallel

@@ -1,0 +1,4 @@
+Spring Boot simplifies backend development
+Collections help manage groups of objects
+Multithreading improves performance
+Collections help manage groups of objects

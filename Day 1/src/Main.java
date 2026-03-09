@@ -1,5 +1,5 @@
 class Main{
     static void main() {
-        FileGenerator.createDirectory();
+        FileGenerator.generateFiles();
     }
 }

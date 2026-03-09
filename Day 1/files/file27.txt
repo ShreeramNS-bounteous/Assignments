@@ -1,0 +1,5 @@
+Security is important in applications
+Multithreading improves performance
+Streams make data processing easier
+Collections help manage groups of objects
+Collections help manage groups of objects

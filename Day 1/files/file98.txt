@@ -1,0 +1,4 @@
+Security is important in applications
+Java is powerful
+Streams make data processing easier
+Streams make data processing easier

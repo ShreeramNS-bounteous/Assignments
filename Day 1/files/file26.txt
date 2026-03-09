@@ -1,0 +1,5 @@
+Java is powerful
+Streams make data processing easier
+Multithreading improves performance
+Multithreading improves performance
+Collections help manage groups of objects

@@ -1,0 +1,3 @@
+Streams make data processing easier
+ExecutorService manages threads efficiently
+Java is powerful

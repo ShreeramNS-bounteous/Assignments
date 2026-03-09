@@ -1,0 +1,4 @@
+Spring Boot simplifies backend development
+Multithreading improves performance
+Collections help manage groups of objects
+Java is powerful

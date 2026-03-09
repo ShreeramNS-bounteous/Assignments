@@ -1,0 +1,4 @@
+Spring Boot simplifies backend development
+Collections help manage groups of objects
+ExecutorService manages threads efficiently
+Security is important in applications

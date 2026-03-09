@@ -1,0 +1,5 @@
+Spring Boot simplifies backend development
+Java is powerful
+Concurrency allows tasks to run in parallel
+Spring Boot simplifies backend development
+Collections help manage groups of objects

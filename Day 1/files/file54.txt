@@ -1,0 +1,3 @@
+Spring Boot simplifies backend development
+ExecutorService manages threads efficiently
+Multithreading improves performance

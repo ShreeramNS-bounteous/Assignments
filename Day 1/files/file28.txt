@@ -1,0 +1,5 @@
+Multithreading improves performance
+Multithreading improves performance
+Collections help manage groups of objects
+Multithreading improves performance
+Security is important in applications

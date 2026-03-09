@@ -1,0 +1,4 @@
+Concurrency allows tasks to run in parallel
+Collections help manage groups of objects
+Multithreading improves performance
+ExecutorService manages threads efficiently

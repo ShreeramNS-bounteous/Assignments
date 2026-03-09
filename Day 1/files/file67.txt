@@ -1,0 +1,5 @@
+Java is powerful
+Streams make data processing easier
+Spring Boot simplifies backend development
+Concurrency allows tasks to run in parallel
+Streams make data processing easier

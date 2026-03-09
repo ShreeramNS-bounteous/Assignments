@@ -1,0 +1,4 @@
+Streams make data processing easier
+Spring Boot simplifies backend development
+Spring Boot simplifies backend development
+Multithreading improves performance

@@ -1,0 +1,5 @@
+Streams make data processing easier
+Concurrency allows tasks to run in parallel
+Multithreading improves performance
+Multithreading improves performance
+Java is powerful

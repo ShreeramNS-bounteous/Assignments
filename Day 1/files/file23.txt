@@ -1,0 +1,3 @@
+Collections help manage groups of objects
+Java is powerful
+Java is powerful

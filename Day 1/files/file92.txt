@@ -1,0 +1,3 @@
+Streams make data processing easier
+Collections help manage groups of objects
+Collections help manage groups of objects

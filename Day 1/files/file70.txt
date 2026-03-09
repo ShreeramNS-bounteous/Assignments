@@ -1,0 +1,5 @@
+ExecutorService manages threads efficiently
+Concurrency allows tasks to run in parallel
+ExecutorService manages threads efficiently
+ExecutorService manages threads efficiently
+Streams make data processing easier

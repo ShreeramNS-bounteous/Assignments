@@ -1,0 +1,5 @@
+Collections help manage groups of objects
+Streams make data processing easier
+Multithreading improves performance
+Multithreading improves performance
+Concurrency allows tasks to run in parallel

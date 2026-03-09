@@ -1,0 +1,5 @@
+Collections help manage groups of objects
+ExecutorService manages threads efficiently
+Security is important in applications
+Java is powerful
+Collections help manage groups of objects

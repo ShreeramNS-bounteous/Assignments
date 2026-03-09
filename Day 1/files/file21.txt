@@ -1,0 +1,5 @@
+Java is powerful
+Java is powerful
+Streams make data processing easier
+Spring Boot simplifies backend development
+ExecutorService manages threads efficiently

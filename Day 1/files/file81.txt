@@ -1,0 +1,5 @@
+Security is important in applications
+Streams make data processing easier
+ExecutorService manages threads efficiently
+Java is powerful
+ExecutorService manages threads efficiently

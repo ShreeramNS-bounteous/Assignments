@@ -1,0 +1,3 @@
+Concurrency allows tasks to run in parallel
+Concurrency allows tasks to run in parallel
+Streams make data processing easier

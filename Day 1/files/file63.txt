@@ -1,0 +1,3 @@
+Security is important in applications
+Multithreading improves performance
+Security is important in applications

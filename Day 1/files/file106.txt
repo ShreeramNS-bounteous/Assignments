@@ -1,0 +1,5 @@
+Security is important in applications
+Collections help manage groups of objects
+Java is powerful
+Streams make data processing easier
+Collections help manage groups of objects

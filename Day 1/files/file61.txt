@@ -1,0 +1,3 @@
+Multithreading improves performance
+Collections help manage groups of objects
+ExecutorService manages threads efficiently

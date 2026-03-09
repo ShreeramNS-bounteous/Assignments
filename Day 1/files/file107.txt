@@ -1,0 +1,5 @@
+ExecutorService manages threads efficiently
+Multithreading improves performance
+Multithreading improves performance
+Multithreading improves performance
+Concurrency allows tasks to run in parallel

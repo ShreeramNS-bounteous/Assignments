@@ -1,0 +1,5 @@
+Streams make data processing easier
+Concurrency allows tasks to run in parallel
+Security is important in applications
+Spring Boot simplifies backend development
+Spring Boot simplifies backend development

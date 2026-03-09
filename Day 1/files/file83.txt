@@ -1,0 +1,4 @@
+Spring Boot simplifies backend development
+Spring Boot simplifies backend development
+Security is important in applications
+Streams make data processing easier

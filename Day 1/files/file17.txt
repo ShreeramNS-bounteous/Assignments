@@ -1,0 +1,5 @@
+Java is powerful
+ExecutorService manages threads efficiently
+ExecutorService manages threads efficiently
+Streams make data processing easier
+Collections help manage groups of objects

@@ -1,0 +1,4 @@
+Collections help manage groups of objects
+Spring Boot simplifies backend development
+Collections help manage groups of objects
+Security is important in applications
