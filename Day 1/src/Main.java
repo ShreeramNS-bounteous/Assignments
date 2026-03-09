@@ -5,7 +5,7 @@ import java.util.List;
 class Main{
     static void main() {
         System.out.println("Processing files using SINGLE thread...\n");
-        long startTime = System.currentTimeMillis();
+        long startTime = System.nanoTime();
 
         List<File> files = FileScanner.getFiles();
 
@@ -23,7 +23,7 @@ class Main{
             totalWords+= result.getWordCount();
         }
 
-        long endTime = System.currentTimeMillis();
+        long endTime = System.nanoTime();
 
         System.out.println("----------------------------------");
         System.out.println("Summary");
@@ -33,6 +33,6 @@ class Main{
         System.out.println("Total Lines: " + totalLines);
         System.out.println("Total Words: " + totalWords);
 
-        System.out.println("Execution Time: " + (endTime - startTime) + " ms");
+        System.out.println("Execution Time: " + (endTime - startTime) / 1_000_000 + " ms");
     }
 }

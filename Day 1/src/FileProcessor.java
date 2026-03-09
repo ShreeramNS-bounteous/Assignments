@@ -16,13 +16,15 @@ public class FileProcessor {
            while ((line = reader.readLine()) != null){
                lineCount++;
                String[] words = line.trim().split("\\s+");
-               wordCount += words.length;
+               if (!line.trim().isEmpty()) {
+                   wordCount += words.length;
+               }
            }
 
            reader.close();
 
        } catch (Exception e) {
-           throw new RuntimeException(e);
+           System.out.println("Error processing file: " + file.getName());
        }
 
        return new FileResult(
