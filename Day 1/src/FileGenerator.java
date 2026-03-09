@@ -5,25 +5,7 @@ import java.util.Random;
 
 public class FileGenerator {
 
-    public static void createDirectory() {
-
-        File folder = new File("files");
-
-        if (!folder.exists()) {
-            boolean created = folder.mkdir();
-
-            if (created) {
-                System.out.println("Directory 'files' created successfully.");
-            } else {
-                System.out.println("Failed to create directory.");
-            }
-
-        } else {
-            System.out.println("Directory already exists.");
-        }
-    }
-
-    public static void generateFiles()  {
+    public static void generateFiles() {
 
         File folder = new File("files");
 
@@ -44,31 +26,32 @@ public class FileGenerator {
         };
 
         Random random = new Random();
+
         try {
-        for (int i = 1; i <= 120; i++) {
 
-            File file = new File("files/file" + i + ".txt");
+            for (int i = 1; i <= 300; i++) {
 
-            FileWriter writer = null;
+                File file = new File("files/file" + i + ".txt");
 
-                writer = new FileWriter(file);
+                // try-with-resources
+                try (FileWriter writer = new FileWriter(file)) {
 
+                    int numberOfLines = random.nextInt(2000 - 1000 + 1) + 1000;
 
-            int numberOfLines = random.nextInt(3) + 3;
+                    for (int j = 0; j < numberOfLines; j++) {
 
-            for (int j = 0; j < numberOfLines; j++) {
+                        String line = sentences[random.nextInt(sentences.length)];
 
-                String line = sentences[random.nextInt(sentences.length)];
+                        writer.write(line + "\n");
+                    }
+                }
 
-                writer.write(line + "\n");
+                System.out.println("Created file" + i + ".txt");
             }
 
-            writer.close();
-
-            System.out.println("Created file" + i + ".txt");
-        }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+
+            System.out.println("Error generating files");
         }
     }
 }

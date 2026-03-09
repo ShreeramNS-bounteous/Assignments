@@ -4,26 +4,29 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FileScanner {
-    public  static List<File > getFiles(){
+    public static List<File> getFiles() {
+
         File folder = new File("files");
 
         File[] files = folder.listFiles();
 
-        if(files == null){
-            return new ArrayList<>();
-        }
-
-        Arrays.sort(files,(f1, f2)->Long.compare(f1.lastModified(),f2.lastModified()));
-
         List<File> selectedFiles = new ArrayList<>();
 
-        for (int i = 0; i < Math.min(100,files.length); i++) {
-            if(files[i].isFile()){
-                selectedFiles.add(files[i]);
+        if (files == null) {
+            System.out.println("No files found or directory does not exist.");
+            return selectedFiles;
+        }
+
+        Arrays.sort(files, (f1, f2) ->
+                Long.compare(f1.lastModified(), f2.lastModified()));
+
+        for (File file : files) {
+
+            if (file != null && file.isFile()) {
+                selectedFiles.add(file);
             }
         }
 
         return selectedFiles;
-
     }
 }
