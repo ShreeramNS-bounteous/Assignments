@@ -8,27 +8,32 @@ public class TicketInventory {
         this.availableTickets = availableTickets;
     }
 
-    public synchronized void bookTickets(String userName, int requestedTickets){
-        // Check if enough tickets exist
-        if(availableTickets >= requestedTickets){
+    public void bookTickets(String userName, int requestedTickets){
 
-            // Simulate processing delay to increase race condition chance
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+        System.out.println(userName + " is trying to access");
+
+        synchronized (this) {
+            // Check if enough tickets exist
+            if (availableTickets >= requestedTickets) {
+
+                // Simulate processing delay to increase race condition chance
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+                availableTickets -= requestedTickets;
+                System.out.println(
+                        userName + " booked " + requestedTickets +
+                                " tickets. Remaining: " + availableTickets
+                );
+            } else {
+
+                System.out.println(
+                        userName + " failed to book " + requestedTickets +
+                                " tickets. Remaining: " + availableTickets
+                );
             }
-            availableTickets-=requestedTickets;
-            System.out.println(
-                    userName + " booked " + requestedTickets +
-                            " tickets. Remaining: " + availableTickets
-            );
-        }else {
-
-            System.out.println(
-                    userName + " failed to book " + requestedTickets +
-                            " tickets. Remaining: " + availableTickets
-            );
         }
     }
 
