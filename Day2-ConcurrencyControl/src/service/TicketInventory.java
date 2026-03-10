@@ -8,7 +8,7 @@ public class TicketInventory {
         this.availableTickets = availableTickets;
     }
 
-    public void bookTickets(String userName, int requestedTickets){
+    public synchronized void bookTickets(String userName, int requestedTickets){
         // Check if enough tickets exist
         if(availableTickets >= requestedTickets){
 
