@@ -1,8 +1,13 @@
 package service;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 public class TicketInventory {
 
     private int availableTickets;
+
+    // Explicit lock object
+    private final ReentrantLock lock = new ReentrantLock();
 
     public TicketInventory(int availableTickets){
         this.availableTickets = availableTickets;
@@ -10,9 +15,12 @@ public class TicketInventory {
 
     public void bookTickets(String userName, int requestedTickets){
 
-        System.out.println(userName + " is trying to access");
+        System.out.println(userName + " attempting booking");
 
-        synchronized (this) {
+        // Acquire lock
+        lock.lock();
+
+        try {
             // Check if enough tickets exist
             if (availableTickets >= requestedTickets) {
 
@@ -34,6 +42,9 @@ public class TicketInventory {
                                 " tickets. Remaining: " + availableTickets
                 );
             }
+        }finally {
+            // Always release lock
+            lock.unlock();
         }
     }
 
