@@ -1,7 +1,7 @@
 import java.io.File;
 import java.util.List;
 
-class Main {
+class SingleThreadedFileProcessing {
 
     static void main() {
 
