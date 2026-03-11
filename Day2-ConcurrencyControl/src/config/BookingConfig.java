@@ -2,7 +2,7 @@ package config;
 
 public class BookingConfig {
 
-    public static final int INITIAL_TICKETS = 50;
+    public static final int INITIAL_TICKETS = 80;
 
     public static final int TOTAL_USERS = 100;
 

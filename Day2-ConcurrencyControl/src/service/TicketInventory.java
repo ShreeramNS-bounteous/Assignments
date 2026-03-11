@@ -7,6 +7,11 @@ public class TicketInventory {
 
     private final AtomicInteger availableTickets;
 
+    private final AtomicInteger successfulBookings = new AtomicInteger(0);
+    private final AtomicInteger failedBookings = new AtomicInteger(0);
+    private final AtomicInteger ticketsSold = new AtomicInteger(0);
+    private final AtomicInteger bookingSequence = new AtomicInteger(0);
+
 
     public TicketInventory(int availableTickets){
         this.availableTickets = new AtomicInteger(availableTickets);
@@ -19,11 +24,15 @@ public class TicketInventory {
 
             // Check if enough tickets are available
             if(currentTickets < requestedTickets){
+
+                failedBookings.incrementAndGet();
+
+                int sequence = bookingSequence.incrementAndGet();
+
                 System.out.println(
-                        userName + " failed to book "
-                                + requestedTickets +
-                                " tickets. Remaining: "
-                                + currentTickets
+                        "[" + sequence + "] " +
+                                userName + " requested " + requestedTickets +
+                                " → Failed (Remaining: " + currentTickets + ")"
                 );
                 return;
             }
@@ -31,10 +40,16 @@ public class TicketInventory {
             int newTickets = currentTickets - requestedTickets;
 
             // Check if enough tickets are available
-            if(availableTickets.compareAndSet(currentTickets,newTickets)){
+            if (availableTickets.compareAndSet(currentTickets, newTickets)) {
+
+                int sequence = bookingSequence.incrementAndGet();
+
+                successfulBookings.incrementAndGet();
+                ticketsSold.addAndGet(requestedTickets);
 
                 System.out.println(
-                        userName + " requested " + requestedTickets +
+                        "[" + sequence + "] " +
+                                userName + " requested " + requestedTickets +
                                 " → Booked → Remaining: " + newTickets
                 );
 
@@ -47,5 +62,17 @@ public class TicketInventory {
     }
     public int getAvailableTickets(){
         return availableTickets.get();
+    }
+
+    public int getSuccessfulBookings(){
+        return successfulBookings.get();
+    }
+
+    public int getFailedBookings(){
+        return failedBookings.get();
+    }
+
+    public int getTicketsSold(){
+        return ticketsSold.get();
     }
 }

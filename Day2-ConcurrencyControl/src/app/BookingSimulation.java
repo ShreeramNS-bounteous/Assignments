@@ -18,23 +18,33 @@ public class BookingSimulation {
 
         Random random = new Random();
 
+        long startTime = System.nanoTime();
+
         for (int i = 1; i <= BookingConfig.TOTAL_USERS; i++) {
             int requestedTickets = random.nextInt(BookingConfig.MAX_TICKETS_PER_REQUEST)+1;
 
+            final int userId = i;
+
             executor.submit(
-                    new UserBookingTask(
-                            inventory,
-                            "User-" + i,
-                            requestedTickets
-                    )
+                    ()->inventory.bookTickets("User-"+userId,requestedTickets)
             );
         }
 
         executor.shutdown();
         executor.awaitTermination(1, TimeUnit.MINUTES);
 
+        long endTime = System.nanoTime();
+
         System.out.println("----------------------------------");
-        System.out.println("Final Tickets Remaining: "
-                + inventory.getAvailableTickets());
+        System.out.println("Summary");
+        System.out.println("----------------------------------");
+
+        System.out.println("Initial Tickets: " + BookingConfig.INITIAL_TICKETS);
+        System.out.println("Tickets Sold: " + inventory.getTicketsSold());
+        System.out.println("Successful Bookings: " + inventory.getSuccessfulBookings());
+        System.out.println("Failed Bookings: " + inventory.getFailedBookings());
+        System.out.println("Remaining Tickets: " + inventory.getAvailableTickets());
+
+        System.out.println("Execution Time: " + (endTime - startTime)/1_000_000 + " ms");
     }
 }
