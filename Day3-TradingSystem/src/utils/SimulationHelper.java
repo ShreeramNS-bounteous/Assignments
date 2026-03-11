@@ -10,6 +10,7 @@ public class SimulationHelper {
 
     private static final Random RANDOM = new Random();
 
+    //initialising the stocks
     public static void initializeStocks(
             ConcurrentHashMap<String, Stock> stocks){
 
@@ -18,6 +19,7 @@ public class SimulationHelper {
         stocks.put("MSFT", new Stock("MSFT", 20));
     }
 
+    //generating the trades
     public static List<TradeRequest> generateTrades(){
 
         List<TradeRequest> requests =
