@@ -37,6 +37,14 @@ public class TradingService {
             int current = stock.getAvailableQuantity().get();
 
             if(current < request.getQuantity()){
+
+                System.out.println(
+                        request.getUserId() + " BUY " +
+                                stock.getSymbol() + " " +
+                                request.getQuantity() +
+                                " FAILED insufficient stock"
+                );
+
                 return;
             }
 
@@ -55,15 +63,17 @@ public class TradingService {
         }
     }
 
-    public void processSell(Stock stock,TradeRequest request){
-        int quantity =  request.getQuantity();
+    public void processSell(Stock stock, TradeRequest request){
+
+        int quantity = request.getQuantity();
 
         while (true){
+
             int current = stock.getAvailableQuantity().get();
 
-            int newQuantity =  current +  request.getQuantity();
+            int newQuantity = current + quantity;
 
-            boolean updated =  stock.getAvailableQuantity()
+            boolean updated = stock.getAvailableQuantity()
                     .compareAndSet(current,newQuantity);
 
             if(updated){
@@ -72,12 +82,22 @@ public class TradingService {
             }
 
             Thread.onSpinWait();
-
         }
     }
 
 
     private void recordTrade(Stock stock, TradeRequest request) {
+
+        int remaining = stock.getAvailableQuantity().get();
+
+        System.out.println(
+                request.getUserId() + " " +
+                        request.getTradeType() + " " +
+                        stock.getSymbol() + " " +
+                        request.getQuantity() +
+                        " SUCCESS remaining=" + remaining
+        );
+
 
         completedTrades.add(
                 new TradeResult(
