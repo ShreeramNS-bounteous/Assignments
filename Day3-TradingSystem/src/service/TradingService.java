@@ -9,7 +9,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class TradingService {
-    private final ConcurrentHashMap<String , Stock> stocks;
+
+    // Shared concurrent structures
+    private final ConcurrentHashMap<String, Stock> stocks;
     private final ConcurrentLinkedQueue<TradeResult> completedTrades;
 
     public TradingService(ConcurrentHashMap<String, Stock> stocks,
@@ -18,51 +20,61 @@ public class TradingService {
         this.completedTrades = completedTrades;
     }
 
+    // Entry point for processing a trade request
     public void processTrade(TradeRequest request){
+
         Stock stock = stocks.get(request.getStockSymbol());
 
+        // Ignore invalid stock symbol
         if(stock == null){
             return;
         }
 
-        if(request.getTradeType() == TradeType.BUY){
-            processBuy(stock,request);
-        }else {
-            processSell(stock,request);
+        TradeType type = request.getTradeType();
+
+        if(type == TradeType.BUY){
+            processBuy(stock, request);
+        } else {
+            processSell(stock, request);
         }
     }
 
+    // Handles BUY operation using CAS retry loop
     public void processBuy(Stock stock, TradeRequest request){
+
+        int quantity = request.getQuantity();
+        String user = request.getUserId();
+
         while (true){
+
             int current = stock.getAvailableQuantity().get();
 
-            if(current < request.getQuantity()){
+            // Fail if not enough stock
+            if(current < quantity){
 
                 System.out.println(
-                        request.getUserId() + " BUY " +
+                        user + " BUY " +
                                 stock.getSymbol() + " " +
-                                request.getQuantity() +
+                                quantity +
                                 " FAILED insufficient stock"
                 );
 
                 return;
             }
 
-            int newQuantity =  current- request.getQuantity();
+            int newQuantity = current - quantity;
 
-            boolean updated = stock.getAvailableQuantity()
-                    .compareAndSet(current,newQuantity);
-
-            if (updated){
-                recordTrade(stock,request);
+            // Atomic update
+            if(stock.getAvailableQuantity().compareAndSet(current, newQuantity)){
+                recordTrade(stock, request);
                 return;
             }
 
-            Thread.onSpinWait();
-
+            Thread.onSpinWait(); // hint for CPU during retry
         }
     }
 
+    // Handles SELL operation using CAS retry loop
     public void processSell(Stock stock, TradeRequest request){
 
         int quantity = request.getQuantity();
@@ -70,14 +82,10 @@ public class TradingService {
         while (true){
 
             int current = stock.getAvailableQuantity().get();
-
             int newQuantity = current + quantity;
 
-            boolean updated = stock.getAvailableQuantity()
-                    .compareAndSet(current,newQuantity);
-
-            if(updated){
-                recordTrade(stock,request);
+            if(stock.getAvailableQuantity().compareAndSet(current, newQuantity)){
+                recordTrade(stock, request);
                 return;
             }
 
@@ -85,7 +93,7 @@ public class TradingService {
         }
     }
 
-
+    // Records successful trade and stores result
     private void recordTrade(Stock stock, TradeRequest request) {
 
         int remaining = stock.getAvailableQuantity().get();
@@ -97,7 +105,6 @@ public class TradingService {
                         request.getQuantity() +
                         " SUCCESS remaining=" + remaining
         );
-
 
         completedTrades.add(
                 new TradeResult(
