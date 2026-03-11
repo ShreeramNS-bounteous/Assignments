@@ -15,7 +15,7 @@ public class TicketInventory {
 
     public void bookTickets(String userName, int requestedTickets){
 
-        System.out.println(userName + " attempting booking");
+//        System.out.println(userName + " attempting booking");
 
         // Acquire lock
         lock.lock();
