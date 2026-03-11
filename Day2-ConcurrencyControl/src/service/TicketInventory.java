@@ -1,54 +1,51 @@
 package service;
 
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.atomic.AtomicInteger;
+
 
 public class TicketInventory {
 
-    private int availableTickets;
+    private final AtomicInteger availableTickets;
 
-    // Explicit lock object
-    private final ReentrantLock lock = new ReentrantLock();
 
     public TicketInventory(int availableTickets){
-        this.availableTickets = availableTickets;
+        this.availableTickets = new AtomicInteger(availableTickets);
     }
 
-    public void bookTickets(String userName, int requestedTickets){
+    public void bookTickets(String userName, int requestedTickets) {
 
-//        System.out.println(userName + " attempting booking");
+        while (true){
+            int currentTickets = availableTickets.get();
 
-        // Acquire lock
-        lock.lock();
-
-        try {
-            // Check if enough tickets exist
-            if (availableTickets >= requestedTickets) {
-
-                // Simulate processing delay to increase race condition chance
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
-                availableTickets -= requestedTickets;
+            // Check if enough tickets are available
+            if(currentTickets < requestedTickets){
                 System.out.println(
-                        userName + " booked " + requestedTickets +
-                                " tickets. Remaining: " + availableTickets
+                        userName + " failed to book "
+                                + requestedTickets +
+                                " tickets. Remaining: "
+                                + currentTickets
                 );
-            } else {
-
-                System.out.println(
-                        userName + " failed to book " + requestedTickets +
-                                " tickets. Remaining: " + availableTickets
-                );
+                return;
             }
-        }finally {
-            // Always release lock
-            lock.unlock();
-        }
-    }
 
+            int newTickets = currentTickets - requestedTickets;
+
+            // Check if enough tickets are available
+            if(availableTickets.compareAndSet(currentTickets,newTickets)){
+
+                System.out.println(
+                        userName + " requested " + requestedTickets +
+                                " → Booked → Remaining: " + newTickets
+                );
+
+                return;
+            }
+
+            // If CAS fails → retry loop
+        }
+
+    }
     public int getAvailableTickets(){
-        return availableTickets;
+        return availableTickets.get();
     }
 }
