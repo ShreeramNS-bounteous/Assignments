@@ -23,6 +23,12 @@ public class TradingService {
     // Entry point for processing a trade request
     public void processTrade(TradeRequest request){
 
+        try {
+            Thread.sleep(50);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
         Stock stock = stocks.get(request.getStockSymbol());
 
         // Ignore invalid stock symbol
@@ -96,6 +102,8 @@ public class TradingService {
     // Records successful trade and stores result
     private void recordTrade(Stock stock, TradeRequest request) {
 
+        double price = stock.getPrice().get();
+
         int remaining = stock.getAvailableQuantity().get();
 
         System.out.println(
@@ -103,6 +111,7 @@ public class TradingService {
                         request.getTradeType() + " " +
                         stock.getSymbol() + " " +
                         request.getQuantity() +
+                        " @ $" + String.format("%.2f", price)+
                         " SUCCESS remaining=" + remaining
         );
 
@@ -112,6 +121,7 @@ public class TradingService {
                         stock.getSymbol(),
                         request.getQuantity(),
                         request.getTradeType(),
+                        price,
                         System.currentTimeMillis()
                 )
         );

@@ -5,5 +5,6 @@ public record TradeResult(
         String stockSymbol,
         int quantity,
         TradeType tradeType,
+        double price,
         long timestamp
 ) {}

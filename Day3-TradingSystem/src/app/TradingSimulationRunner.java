@@ -23,6 +23,10 @@ public class TradingSimulationRunner {
         // Initialize predefined stocks (AAPL, GOOG, MSFT)
         SimulationHelper.initializeStocks(stocks);
 
+// Start market simulator (background price updates)
+        ScheduledExecutorService marketExecutor =
+                startMarketSimulator(stocks);
+
         // Core service responsible for processing trades
         TradingService tradingService =
                 new TradingService(stocks, completedTrades);
@@ -48,6 +52,9 @@ public class TradingSimulationRunner {
             Thread.currentThread().interrupt(); // restore interrupt status
         }
 
+        // Stop market price simulator after trading completes
+        marketExecutor.shutdownNow();
+
         // Generate analytical report using Java Streams
         TradeAnalytics.printReport(completedTrades);
 
@@ -70,5 +77,44 @@ public class TradingSimulationRunner {
         for(TradeRequest trade : trades){
             executor.submit(() -> service.processTrade(trade));
         }
+    }
+
+    /**
+     * Starts background market simulation that periodically updates stock prices.
+     * Uses ScheduledExecutorService with a lambda Runnable.
+     */
+    private ScheduledExecutorService startMarketSimulator(
+            ConcurrentHashMap<String, Stock> stocks) {
+
+        ScheduledExecutorService marketExecutor =
+                Executors.newScheduledThreadPool(1);
+
+        marketExecutor.scheduleAtFixedRate(() -> {
+
+            System.out.println("\n===== MARKET UPDATE =====");
+
+            stocks.values().forEach(stock -> {
+
+                double currentPrice = stock.getPrice().get();
+
+                // Simulate small market fluctuation
+                double change = (Math.random() - 0.5) * 2;
+
+                double newPrice = currentPrice + change;
+
+                stock.getPrice().set(newPrice);
+
+                System.out.println(
+                        "Market Update → "
+                                + stock.getSymbol()
+                                + " price updated to $"
+                                + String.format("%.2f", newPrice)
+                );
+
+            });
+            System.out.println();
+
+        }, 0, 500, TimeUnit.MILLISECONDS);
+        return marketExecutor;
     }
 }

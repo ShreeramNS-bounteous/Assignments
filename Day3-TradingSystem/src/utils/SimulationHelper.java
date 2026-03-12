@@ -14,9 +14,9 @@ public class SimulationHelper {
     public static void initializeStocks(
             ConcurrentHashMap<String, Stock> stocks){
 
-        stocks.put("AAPL", new Stock("AAPL", 20));
-        stocks.put("GOOG", new Stock("GOOG", 20));
-        stocks.put("MSFT", new Stock("MSFT", 20));
+        stocks.put("AAPL", new Stock("AAPL", 20, 182.0));
+        stocks.put("GOOG", new Stock("GOOG", 20, 2798.0));
+        stocks.put("MSFT", new Stock("MSFT", 20, 331.0));
     }
 
     //generating the trades
